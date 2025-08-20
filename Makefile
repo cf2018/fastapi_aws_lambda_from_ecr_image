@@ -60,13 +60,16 @@ tf-init:
 	cd terraform && terraform init
 
 tf-apply:
-	cd terraform && terraform apply -var "aws_region=$(AWS_REGION)" -var "environment=$(STAGE)" -var "lambda_function_name=$(LAMBDA_NAME)" -var "ecr_repo_name=$(ECR_REPO)" -var "image_tag=$(IMAGE_TAG)" -var "manage_ecr_repo=false"
+	cd terraform && terraform apply -var "aws_region=$(AWS_REGION)" -var "environment=$(STAGE)" -var "lambda_function_name=$(LAMBDA_NAME)" -var "ecr_repo_name=$(ECR_REPO)" -var "image_tag=$(IMAGE_TAG)" -var "lambda_memory=$(LAMBDA_MEMORY)" -var "lambda_timeout=$(LAMBDA_TIMEOUT)" -var "manage_ecr_repo=false"
 	cd terraform && terraform output api_endpoint || true
 
 tf-destroy:
-	cd terraform && terraform destroy -var "aws_region=$(AWS_REGION)" -var "environment=$(STAGE)" -var "lambda_function_name=$(LAMBDA_NAME)" -var "ecr_repo_name=$(ECR_REPO)" -var "image_tag=$(IMAGE_TAG)" -var "manage_ecr_repo=false"
+	cd terraform && terraform destroy -var "aws_region=$(AWS_REGION)" -var "environment=$(STAGE)" -var "lambda_function_name=$(LAMBDA_NAME)" -var "ecr_repo_name=$(ECR_REPO)" -var "image_tag=$(IMAGE_TAG)" -var "lambda_memory=$(LAMBDA_MEMORY)" -var "lambda_timeout=$(LAMBDA_TIMEOUT)" -var "manage_ecr_repo=false"
 
 deploy: docker-build ecr-push tf-init tf-apply
+	@echo "Chosen Lambda configuration:"
+	@echo "  Memory: $(LAMBDA_MEMORY) MB"
+	@echo "  Timeout: $(LAMBDA_TIMEOUT) seconds"
 	@echo "Deploy complete. See API endpoint above."
 
 destroy-all: tf-destroy ecr-delete-image ecr-delete-repo

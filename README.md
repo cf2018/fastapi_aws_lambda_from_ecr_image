@@ -47,6 +47,8 @@ STAGE=dev
 LAMBDA_NAME=fastapi_aws_lambda
 ECR_REPO=fastapi-aws-lambda
 IMAGE_TAG=latest
+LAMBDA_MEMORY=512  # Lambda memory size in MB
+LAMBDA_TIMEOUT=30  # Lambda timeout in seconds
 ```
 
 Deploy (builds the image, pushes to ECR, applies Terraform):
