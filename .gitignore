@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+venv/
+ENV/
+env/
+
+# Docker
+*.log
+*.pid
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# MacOS
+.DS_Store
+
+# Linux
+*~
+
+# General
+*.swp
+*.bak
+*.tmp
+
+# Node
+node_modules/
+
+# Git
+.git/
+
+# Others
+.idea/
+*.egg-info/
+
+# Ignore package files
+package-lock.json
+
+# Ignore test coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# Ignore dist
+build/
+dist/
+*.egg
+
+# Ignore secrets
+.env*
+
+# Ignore scripts
+scripts/__pycache__/
+
+# Ignore app cache
+app/__pycache__/
+app/*/__pycache__/

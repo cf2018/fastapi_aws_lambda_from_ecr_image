@@ -1,0 +1,14 @@
+# Ignore everything unnecessary for the image context
+.git
+.gitignore
+*.pyc
+__pycache__/
+.build/
+build/
+.terraform/
+terraform.tfstate*
+.env*
+README.md
+Makefile
+scripts/
+**/*.log
